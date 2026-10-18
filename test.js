@@ -1,0 +1,13 @@
+var E = require('./engine.js'), assert = require('assert');
+assert.strictEqual(E.streakOf(['2026-10-16','2026-10-17','2026-10-18'], '2026-10-18'), 3);
+assert.strictEqual(E.streakOf(['2026-10-16','2026-10-17'], '2026-10-18'), 2);
+assert.strictEqual(E.streakOf(['2026-10-10'], '2026-10-18'), 0);
+assert.strictEqual(E.sessionXp(50, 1), 100);
+assert.strictEqual(E.sessionXp(50, 3), 120);
+assert.strictEqual(E.sessionXp(50, 20), 160);
+assert.strictEqual(E.level(399), 2); assert.strictEqual(E.level(400), 3);
+assert.notStrictEqual(E.validate({sport:'x',mins:2,date:'2026-10-18'}), '');
+assert.strictEqual(E.validate({sport:'x',mins:30,date:'2026-10-18'}), '');
+var s = E.summarize([{sport:'a',mins:50,date:'2026-10-17'},{sport:'b',mins:50,date:'2026-10-18'}], '2026-10-18');
+assert.strictEqual(s.xp, 100 + 110); assert.strictEqual(s.streak, 2);
+console.log('all tests passed');
